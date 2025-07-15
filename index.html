@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Company Website with Interactive Navigation</title>
+<style>
+  /* Reset default margin/padding */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    min-height: 2500px; /* to allow scrolling */
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* Navigation styles */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    box-shadow: none;
+  }
+
+  /* Background after scroll */
+  nav.scrolled {
+    background-color: #222;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+
+  ul.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+
+  ul.menu li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  nav.scrolled ul.menu li a {
+    color: white;
+  }
+
+  /* Hover effect on menu items */
+  ul.menu li a:hover {
+    background-color: #ff6f61;
+    color: #fff;
+  }
+
+  /* Active menu item style */
+  ul.menu li a.active {
+    background-color: #ff6f61;
+    color: #fff;
+  }
+
+  /* Sections styling */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 100px 20px 80px;
+  }
+
+  section:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #222;
+  }
+
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 15px;
+    color: #444;
+  }
+
+  p {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+
+  ul.features {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* Footer styling */
+  footer {
+    background: #222;
+    color: #eee;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    ul.menu {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    nav {
+      padding: 10px 15px;
+    }
+
+    section {
+      padding: 80px 15px 60px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <ul class="menu">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home">
+  <h1>Welcome to BrightTech Solutions</h1>
+  <img src="BrightTech_Logo_Web_Large.png" alt="BrightTech Logo" style="width: 100%; max-width: 600px; height: auto; display: block; margin-bottom: 30px; border-radius: 8px;" />
+  <p>At BrightTech Solutions, we innovate to bring the latest technology and digital solutions to your business. Our expert team is dedicated to helping you grow and succeed in the digital age.</p>
+  <p>Explore our services and discover how we can transform your ideas into reality.</p>
+</section>
+
+<section id="about">
+  <h1>About Us</h1>
+  <p>Founded in 2010, BrightTech Solutions has been at the forefront of digital innovation. Our mission is to deliver top-quality software, consulting, and IT services that empower businesses worldwide.</p>
+  <h2>Our Values</h2>
+  <ul class="features">
+    <li>Customer-Centric Approach</li>
+    <li>Integrity & Transparency</li>
+    <li>Innovation & Creativity</li>
+    <li>Commitment to Excellence</li>
+  </ul>
+  <p>We believe in building lasting partnerships with our clients and providing solutions that make a real impact.</p>
+</section>
+
+<section id="services">
+  <h1>Our Services</h1>
+  <h2>Software Development</h2>
+  <p>Custom-built software tailored to your business needs, using the latest technologies to ensure scalability and performance.</p>
+  
+  <h2>IT Consulting</h2>
+  <p>Expert advice and strategic planning to optimize your IT infrastructure and align technology with your business goals.</p>
+  
+  <h2>Cloud Solutions</h2>
+  <p>Flexible and secure cloud services that enable your business to be agile, efficient, and cost-effective.</p>
+  
+  <h2>Support & Maintenance</h2>
+  <p>Reliable technical support and maintenance services to keep your systems running smoothly 24/7.</p>
+</section>
+
+<section id="contact">
+  <h1>Contact Us</h1>
+  <p>Have questions or want to work together? Reach out to our team, and we'll get back to you promptly.</p>
+
+  <h2>Address</h2>
+  <p>123 Innovation Drive, Tech City, TX 75001</p>
+
+  <h2>Email</h2>
+  <p><a href="mailto:contact@brighttech.com">contact@brighttech.com</a></p>
+
+  <h2>Phone</h2>
+  <p>+1 (555) 123-4567</p>
+</section>
+
+<footer>
+  &copy; 2025 BrightTech Solutions. All rights reserved.
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const links = document.querySelectorAll('nav ul.menu li a');
+  const sections = document.querySelectorAll('section');
+
+  window.addEventListener('scroll', () => {
+    // Navbar background on scroll
+    if (window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+
+    // Highlight nav link based on scroll position
+    let currentSectionId = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;  // adjust offset for nav height
+      if (window.scrollY >= sectionTop) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    links.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + currentSectionId) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
